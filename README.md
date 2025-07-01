@@ -28,7 +28,7 @@ For simplicity, the following heuristic assumptions are applied:
 ## Setup
 
 1. Install dependencies:
-
+ 
 ```bash
 pip install -r requirements.txt
 ```
