@@ -48,7 +48,7 @@ streamlit run SRF.py
 
 
 - Manual selection: You can also specify departure and arrival stations directly.
-  ![image](https://github.com/user-attachments/assets/02900252-e85d-427c-95f3-b7b61c48f095)
+  ![image](https://github.com/user-attachments/assets/8fc0be25-f6c8-4b0d-82a5-19198d57fd07)
 
 
 - Detailed output: The shortest path, route summary, and total estimated travel time are displayed.
