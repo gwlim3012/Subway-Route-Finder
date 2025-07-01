@@ -44,10 +44,14 @@ streamlit run SRF.py
 ## Demo
 
 - Natural language input: Enter queries like “강남역에서 서울역까지 알려줘” and get the shortest route automatically.
-  ![image](https://github.com/user-attachments/assets/f373533f-092c-4377-ab5b-e3fa063a1be5)
+  ![image](https://github.com/user-attachments/assets/3b9c51f4-1641-4aaa-b4ea-f126c6abe214)
+
 
 - Manual selection: You can also specify departure and arrival stations directly.
-  ![image](https://github.com/user-attachments/assets/62a38dd6-1207-41dc-ad46-e4559934ace8)
+  ![image](https://github.com/user-attachments/assets/02900252-e85d-427c-95f3-b7b61c48f095)
+
 
 - Detailed output: The shortest path, route summary, and total estimated travel time are displayed.
-  ![image](https://github.com/user-attachments/assets/1379a2d0-8ed7-4d58-9494-d15a2cfc1323)
+  ![image](https://github.com/user-attachments/assets/87172686-8149-4f1e-9042-f292e117552f)
+
+
