@@ -1,53 +1,64 @@
-# Subway Route Finder
+# 🚇 AI Subway Route Finder
 
-A Streamlit-based web application that finds the shortest path between subway stations in the Seoul metropolitan area.
+AI와 Streamlit을 활용하여 제작된 수도권 지하철 최단 경로 안내 및 주변 정보 추천 서비스입니다.
 
-This project originated as a team assignment for the **Data Structures and Algorithms (DA)** course in the 2nd year, 1st semester of university. The original version was a console-based program that simply displayed the shortest subway route using **Dijkstra's algorithm**. It has since been extended into a more interactive toy project with a web UI built using Streamlit and natural language input supported via an LLM (Large Language Model).
+이 프로젝트는 대학교 2학년 1학기 **자료구조 및 알고리즘(DA)** 수업의 팀 과제로 시작되었습니다. 초기 버전은 **다익스트라 알고리즘**을 사용하여 최단 경로를 콘솔에 출력하는 간단한 프로그램이었습니다. 이후 Streamlit으로 웹 UI를 구현하고, Upstage Solar API를 연동하여 자연어 처리 기능을 추가한 토이 프로젝트로 발전했습니다.
 
-The integrated LLM is **Upstage's Solar-Pro2-preview**, which enables the system to interpret queries such as “강남역에서 서울역까지 알려줘” in Korean and return the optimal route.
+## ✨ 주요 기능
 
-For simplicity, the following heuristic assumptions are applied:
-- Travel time between adjacent stations: **2 minutes**
-- Transfer time between lines: **5 minutes**
+- **자연어 경로 검색**: "강남에서 홍대까지"와 같은 일상적인 언어로 경로를 질문할 수 있습니다.
+- **AI 경로 코멘트**: 검색된 경로의 특징(환승 여부, 소요 시간 등)을 AI가 분석하여 친절한 코멘트를 제공합니다.
+- **AI 주변 정보 추천**: 출발역과 도착역 주변의 맛집, 카페, 볼거리 등을 AI에게 질문하고 추천받을 수 있습니다.
+- **최단 경로 계산**: 다익스트라 알고리즘을 기반으로 가장 빠른 경로를 계산합니다.
+- **사용자 친화적 UI**: Streamlit을 사용하여 모든 정보를 시각적으로 명확하고 직관적으로 제공합니다.
 
-## Features
+> **참고**: 편의상 역 간 이동 시간은 **2분**, 환승 시간은 **5분**으로 고정되어 있습니다.
 
-- Natural language queries for subway routing (Korean)
-- Dijkstra-based shortest path calculation
-- Intuitive Streamlit web UI
-- Visual route summary with time estimates
+## 🛠️ 파일 구조
 
-## Requirements
-
-- Python 3.10+
-- streamlit
-- pandas
-- openai
-- python-dotenv
-
-## Setup
-
-1. Install dependencies:
-
-```bash
-pip install -r requirements.txt
+```
+C:/Users/world/OneDrive/Desktop/test/
+├───.env # API key
+├───README.md
+├───requirements.txt
+├───main.py             # 애플리케이션 메인 로직
+├───ui.py               # Streamlit UI 컴포넌트
+├───ai_helper.py        # Upstage Solar API 연동 헬퍼
+├───subway_system.py    # 지하철 노선도 그래프 및 경로 탐색
+├───data/
+│   ├───stations.json   # 역 정보
+│   └───transfers.json  # 환승 정보
+└───__pycache__/ 
 ```
 
-2. Set your `UPSTAGE_API_KEY` in a `.env` file or your environment.
+## ⚙️ 설치 및 실행
 
-3. Run the application:
+1.  **필요한 라이브러리 설치:**
 
-```bash
-streamlit run SRF.py
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## Demo
+2.  **API 키 설정:**
+    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고, 아래와 같이 Upstage API 키를 입력합니다.
 
-- Natural language input: Enter queries like “강남역에서 서울역까지 알려줘” and get the shortest route automatically.
-  ![image](https://github.com/user-attachments/assets/f373533f-092c-4377-ab5b-e3fa063a1be5)
+    ```
+    UPSTAGE_API_KEY="YOUR_API_KEY_HERE"
+    ```
 
-- Manual selection: You can also specify departure and arrival stations directly.
-  ![image](https://github.com/user-attachments/assets/62a38dd6-1207-41dc-ad46-e4559934ace8)
+3.  **애플리케이션 실행:**
 
-- Detailed output: The shortest path, route summary, and total estimated travel time are displayed.
-  ![image](https://github.com/user-attachments/assets/1379a2d0-8ed7-4d58-9494-d15a2cfc1323)
+    ```bash
+    streamlit run main.py
+    ```
+
+## 🖼️ 데모 화면
+
+- **메인 화면 및 자연어 검색**
+  <img width="700" alt="main" src="https://github.com/user-attachments/assets/f373533f-092c-4377-ab5b-e3fa063a1be5">
+
+- **경로 검색 결과 및 AI 코멘트**
+  <img width="700" alt="result" src="https://github.com/user-attachments/assets/1379a2d0-8ed7-4d58-9494-d15a2cfc1323">
+
+- **AI 주변 정보 추천**
+  <img width_="700" alt="recommendation" src="https://github.com/ryu-seung-min/subway-route-finder/assets/112821134/b09a781a-e503-4b1b-a20c-0e88389a3339">

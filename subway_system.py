@@ -1,6 +1,7 @@
 import json
 import heapq
 from pathlib import Path
+from typing import Self
 
 
 class SubwaySystem:
@@ -61,23 +62,37 @@ class SubwaySystem:
             node = prev[node]
         return list(reversed(path)), dist
 
+    @classmethod
+    def from_data_files(cls) -> Self:
+        """Load graph data from the data folder."""
+        system = cls()
+        data_path = Path(__file__).parent / "data"
+        stations_file = data_path / "stations.json"
+        transfers_file = data_path / "transfers.json"
+        with open(stations_file, encoding="utf-8") as f:
+            stations = json.load(f)
+        with open(transfers_file, encoding="utf-8") as f:
+            transfers = json.load(f)
+        for line_str, st_list in stations.items():
+            for i, stn in enumerate(st_list):
+                system.add_station(line_str, stn)
+                if i > 0:
+                    prev = st_list[i - 1]
+                    system.add_connection(line_str, prev, line_str, stn, 2)
+        for l1, s1, l2, s2 in transfers:
+            system.add_connection(str(l1), s1, str(l2), s2, 5)
+        return system
+
 
 def load_system() -> SubwaySystem:
-    """Load graph data from the data folder."""
-    system = SubwaySystem()
-    data_path = Path(__file__).parent / "data"
-    stations_file = data_path / "stations.json"
-    transfers_file = data_path / "transfers.json"
-    with open(stations_file, encoding="utf-8") as f:
-        stations = json.load(f)
-    with open(transfers_file, encoding="utf-8") as f:
-        transfers = json.load(f)
-    for line_str, st_list in stations.items():
-        for i, stn in enumerate(st_list):
-            system.add_station(line_str, stn)
-            if i > 0:
-                prev = st_list[i - 1]
-                system.add_connection(line_str, prev, line_str, stn, 2)
-    for l1, s1, l2, s2 in transfers:
-        system.add_connection(str(l1), s1, str(l2), s2, 5)
-    return system
+    """Load subway graph data from the data folder."""
+    return SubwaySystem.from_data_files()
+
+
+if __name__ == "__main__":
+    subway = load_system()
+    start_node = ("1", "시청")
+    end_node = ("2", "강남")
+    path, dist = subway.shortest_path(start_node, end_node)
+    print(f"Path: {path}")
+    print(f"Distance: {dist}")
