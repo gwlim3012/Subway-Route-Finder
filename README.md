@@ -18,7 +18,7 @@ AI와 Streamlit을 활용하여 제작된 수도권 지하철 최단 경로 안�
 
 ```
 C:/Users/world/OneDrive/Desktop/test/
-├───.env # API key
+├───.env
 ├───README.md
 ├───requirements.txt
 ├───main.py             # 애플리케이션 메인 로직
